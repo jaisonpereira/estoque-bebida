@@ -1,12 +1,18 @@
 package br.com.jaison.estoquebebida.repository;
 
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.group;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
-import static org.springframework.data.mongodb.core.query.Query.query;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.GroupOperation;
+import org.springframework.data.mongodb.core.aggregation.MatchOperation;
+import org.springframework.data.mongodb.core.aggregation.TypedAggregation;
+import org.springframework.data.mongodb.core.query.Criteria;
 
 import br.com.jaison.estoquebebida.domain.Secao;
 
@@ -39,7 +45,24 @@ public class SecaoRepositoryImpl implements SecaoRepositoryCustom {
 	@Override
 	public List<Secao> findBySecao(Integer numeroSecao) {
 
-		return mongoTemplate.find(query(where("numeroSecao").is(numeroSecao)), Secao.class);
+		MatchOperation matchNumeroSecao = getMatchNumeroSecao(numeroSecao);
+
+		TypedAggregation<Secao> aggregation = newAggregation(Secao.class,
+				group("numeroSecao").sum("bebida.volume").as("total"));
+
+		// return mongoTemplate.find(query(where("numeroSecao").is(numeroSecao)),
+		// Secao.class);
+		return mongoTemplate.aggregate(aggregation, Secao.class).getMappedResults();
+	}
+
+	private MatchOperation getMatchNumeroSecao(Integer numeroSecao) {
+		Criteria criteria = where("numeroSecao").is(numeroSecao);
+		return match(criteria);
+	}
+
+	private GroupOperation getGroupOperation() {
+		return group("numeroSecao").last("numeroSecao").as("numeroSecao").addToSet("id").as("productIds").avg("price")
+				.as("averagePrice").sum("price").as("totalRevenue");
 	}
 
 }
