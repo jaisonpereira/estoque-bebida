@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Secao extends EntidadeGenerica {
 
 	private Integer numeroSecao;
-
 	
 	private Bebida bebida;
 

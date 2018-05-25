@@ -52,4 +52,9 @@ public class SecoesResource {
 		return service.saveSecao(numeroSecao, secao);
 	}
 
+	@GetMapping(value = "/secoes/teste/{numeroSecao}")
+	public List<Secao> teste(@PathVariable Integer numeroSecao) throws NotFoundSecaoException {
+		return service.getTeste(numeroSecao);
+	}
+
 }

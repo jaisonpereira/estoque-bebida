@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.jaison.estoquebebida.domain.Bebida;
 import br.com.jaison.estoquebebida.domain.Secao;
 import br.com.jaison.estoquebebida.exceptions.NotFoundSecaoException;
 import br.com.jaison.estoquebebida.exceptions.RegraDeNegocioValidationException;
@@ -68,8 +67,12 @@ public class SecoesService {
 	}
 
 	private void validateCapacidadeArmazenamento(Secao secao) {
-		
-		
+
+	}
+
+	public List<Secao> getTeste(Integer numeroSecao) throws NotFoundSecaoException {
+		isSecaoExists(numeroSecao);
+		return repository.findBySecao(numeroSecao);
 	}
 
 }
