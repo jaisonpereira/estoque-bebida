@@ -2,6 +2,9 @@ package br.com.jaison.estoquebebida.exceptions;
 
 import java.io.Serializable;
 
+/**
+ * @author jpereira Tratamento de erros no sistema
+ */
 public class StandardError implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -10,7 +13,7 @@ public class StandardError implements Serializable {
 	private String error;
 	private String message;
 	private String path;
-	
+
 	public StandardError(Long timestamp, Integer status, String error, String message, String path) {
 		super();
 		this.timestamp = timestamp;

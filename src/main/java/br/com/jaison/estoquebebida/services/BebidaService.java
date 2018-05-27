@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.jaison.estoquebebida.domain.Bebida;
 import br.com.jaison.estoquebebida.enums.TipoBebidaTypes;
+import br.com.jaison.estoquebebida.exceptions.NotFoundTypeBebidaException;
 import br.com.jaison.estoquebebida.exceptions.RegraDeNegocioValidationException;
 
 /**
@@ -30,6 +31,19 @@ public class BebidaService {
 
 		if (!validate.toString().isEmpty()) {
 			throw new RegraDeNegocioValidationException(validate.toString());
+		}
+	}
+
+	/**
+	 * Valida tipo de bebida
+	 * 
+	 * @param tipo
+	 * @throws NotFoundTypeBebidaException
+	 */
+	public void validBebidaTipo(Integer tipo) throws NotFoundTypeBebidaException {
+		if (!TipoBebidaTypes.isValid(tipo)) {
+			throw new NotFoundTypeBebidaException(
+					"Tipo da bebida obrigatorio , tipos aceitos 1=alcoolico,2=nao alcoolico! \n");
 		}
 	}
 

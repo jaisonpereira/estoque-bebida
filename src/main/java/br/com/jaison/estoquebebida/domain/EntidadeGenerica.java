@@ -4,8 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * @author jpereira
- *
+ * @author jpereira Entidade Generica utilizada para mapear documents MongoDB
  */
 @Document
 public class EntidadeGenerica {

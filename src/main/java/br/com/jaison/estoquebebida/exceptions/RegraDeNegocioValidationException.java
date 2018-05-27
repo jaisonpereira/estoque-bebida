@@ -8,6 +8,11 @@ package br.com.jaison.estoquebebida.exceptions;
  */
 public class RegraDeNegocioValidationException extends Exception {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6240689220953261648L;
+
 	public RegraDeNegocioValidationException(String message) {
 		super(message);
 	}

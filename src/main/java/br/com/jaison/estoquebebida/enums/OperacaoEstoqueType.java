@@ -1,15 +1,15 @@
 package br.com.jaison.estoquebebida.enums;
 
 /**
- * @author jpereira Enum identifica tipo da bebidas suportadas pelo sistema
+ * @author jpereira Enum identifica operacoes de estoque suportadas pelo sistema
  * 
  */
-public enum TipoBebidaTypes {
-	ALCOOLICA(1), NAO_ALCOOLICA(2);
+public enum OperacaoEstoqueType {
+	ENTRADA(1), SAIDA(2);
 
 	private Integer value;
 
-	TipoBebidaTypes(Integer value) {
+	OperacaoEstoqueType(Integer value) {
 		this.value = value;
 	}
 
@@ -21,7 +21,7 @@ public enum TipoBebidaTypes {
 		if (value == null) {
 			return false;
 		}
-		for (TipoBebidaTypes typeB : TipoBebidaTypes.values()) {
+		for (OperacaoEstoqueType typeB : OperacaoEstoqueType.values()) {
 			if (value.equals(typeB.value)) {
 				return true;
 			}
