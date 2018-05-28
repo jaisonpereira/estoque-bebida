@@ -9,7 +9,7 @@ import br.com.jaison.estoquebebida.domain.Historico;
 
 public interface HistoricoRepository extends MongoRepository<Historico, String> {
 
-	public List<Historico> findByItemEstoqueNumeroSecaoEqualsAndItemEstoqueBebidaTipoEqualsAndDataOperacaoAfter(
-			Integer numeroSecao, Integer tipoBebida, LocalDateTime dataOperacaoAfter);
+	public List<Historico> findByItemEstoqueNumeroSecaoEqualsAndItemEstoqueBebidaTipoEqualsAndDataOperacaoAfter(Integer numeroSecao,
+			Integer tipoBebida, LocalDateTime dataOperacaoAfter);
 
 }

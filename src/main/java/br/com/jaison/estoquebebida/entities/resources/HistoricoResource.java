@@ -22,7 +22,7 @@ public class HistoricoResource {
 
 	@GetMapping(value = "/historico")
 	public List<Historico> listarHistoricosPorSecaoDataOperacao(@RequestParam Boolean desc) {
-		return service.listarHistoricosPorSecaoDataOperacao(desc);
+		return this.service.listarHistoricosPorSecaoDataOperacao(desc);
 	}
 
 }

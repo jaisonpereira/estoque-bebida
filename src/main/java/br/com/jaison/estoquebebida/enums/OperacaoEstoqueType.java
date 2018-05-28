@@ -2,7 +2,7 @@ package br.com.jaison.estoquebebida.enums;
 
 /**
  * @author jpereira Enum identifica operacoes de estoque suportadas pelo sistema
- * 
+ *
  */
 public enum OperacaoEstoqueType {
 	ENTRADA(1), SAIDA(2);
@@ -11,10 +11,6 @@ public enum OperacaoEstoqueType {
 
 	OperacaoEstoqueType(Integer value) {
 		this.value = value;
-	}
-
-	public Integer value() {
-		return this.value;
 	}
 
 	public static boolean isValid(Integer value) {
@@ -27,6 +23,10 @@ public enum OperacaoEstoqueType {
 			}
 		}
 		return false;
+	}
+
+	public Integer value() {
+		return this.value;
 	}
 
 }

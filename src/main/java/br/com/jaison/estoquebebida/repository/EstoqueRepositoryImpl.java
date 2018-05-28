@@ -29,17 +29,10 @@ public class EstoqueRepositoryImpl implements EstoqueRepositoryCustom {
 		this.mongoTemplate = mongoTemplate;
 	}
 
-	@Override
-	public Double getArmazenamentoUtilizadoBySecao(Integer numeroSecao) {
-		List<SecaoEstoqueDTO> result = mongoTemplate
-				.aggregate(getSumBebidaVolumeGroupedByNumeroSecao(getMatchNumeroSecao(numeroSecao)), Estoque.class,
-						SecaoEstoqueDTO.class)
-				.getMappedResults();
-		return result != null && !result.isEmpty() ? result.get(0).getTotal() : 0;
-	}
+	private static final String NUMERO_SECAO = "numeroSecao";
 
 	private MatchOperation getMatchNumeroSecao(Integer numeroSecao) {
-		Criteria criteria = where("numeroSecao").is(numeroSecao);
+		Criteria criteria = where(NUMERO_SECAO).is(numeroSecao);
 		return match(criteria);
 	}
 
@@ -48,14 +41,20 @@ public class EstoqueRepositoryImpl implements EstoqueRepositoryCustom {
 		return match(criteria);
 	}
 
-	private TypedAggregation<Estoque> getSumBebidaVolumeGroupedByNumeroSecao(MatchOperation match) {
-		return newAggregation(Estoque.class,
-				group("numeroSecao").first("numeroSecao").as("numeroSecao").sum("bebida.volume").as("total"), match);
+	private TypedAggregation<Estoque> getSumBebidaVolumeGroupedByBebidaTipo(MatchOperation match) {
+		return newAggregation(Estoque.class, group("bebida.tipo").first("bebida.tipo").as("tipoBebida").sum("bebida.volume").as("total"), match);
 	}
 
-	private TypedAggregation<Estoque> getSumBebidaVolumeGroupedByBebidaTipo(MatchOperation match) {
-		return newAggregation(Estoque.class,
-				group("bebida.tipo").first("bebida.tipo").as("tipoBebida").sum("bebida.volume").as("total"), match);
+	private TypedAggregation<Estoque> getSumBebidaVolumeGroupedByNumeroSecao(MatchOperation match) {
+		return newAggregation(Estoque.class, group(NUMERO_SECAO).first(NUMERO_SECAO).as(NUMERO_SECAO).sum("bebida.volume").as("total"), match);
+	}
+
+	@Override
+	public Double getArmazenamentoUtilizadoBySecao(Integer numeroSecao) {
+		List<SecaoEstoqueDTO> result = this.mongoTemplate
+				.aggregate(getSumBebidaVolumeGroupedByNumeroSecao(getMatchNumeroSecao(numeroSecao)), Estoque.class, SecaoEstoqueDTO.class)
+				.getMappedResults();
+		return result != null && !result.isEmpty() ? result.get(0).getTotal() : 0;
 	}
 
 	/*
@@ -63,9 +62,8 @@ public class EstoqueRepositoryImpl implements EstoqueRepositoryCustom {
 	 */
 	@Override
 	public Double getVolumeTotalPorTipoBebida(Integer tipoBebida) {
-		List<SecaoEstoqueDTO> result = mongoTemplate
-				.aggregate(getSumBebidaVolumeGroupedByBebidaTipo(getMatchTipoBebida(tipoBebida)), Estoque.class,
-						SecaoEstoqueDTO.class)
+		List<SecaoEstoqueDTO> result = this.mongoTemplate
+				.aggregate(getSumBebidaVolumeGroupedByBebidaTipo(getMatchTipoBebida(tipoBebida)), Estoque.class, SecaoEstoqueDTO.class)
 				.getMappedResults();
 		return result != null && !result.isEmpty() ? result.get(0).getTotal() : 0;
 

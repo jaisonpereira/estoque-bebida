@@ -21,7 +21,7 @@ public class BebidaService {
 		if (bebida.getNome() == null || bebida.getNome().isEmpty()) {
 			validate.append("Nome da bebida obrigatorio ! \n");
 		}
-		if (bebida.getVolume() == null || !(bebida.getVolume() > 0)) {
+		if (bebida.getVolume() == null || bebida.getVolume() <= 0) {
 			validate.append("Volume da bebida em ml obrigatorio ! \n");
 		}
 
@@ -36,14 +36,13 @@ public class BebidaService {
 
 	/**
 	 * Valida tipo de bebida
-	 * 
+	 *
 	 * @param tipo
 	 * @throws NotFoundTypeBebidaException
 	 */
 	public void validBebidaTipo(Integer tipo) throws NotFoundTypeBebidaException {
 		if (!TipoBebidaTypes.isValid(tipo)) {
-			throw new NotFoundTypeBebidaException(
-					"Tipo da bebida obrigatorio , tipos aceitos 1=alcoolico,2=nao alcoolico! \n");
+			throw new NotFoundTypeBebidaException("Tipo da bebida obrigatorio , tipos aceitos 1=alcoolico,2=nao alcoolico! \n");
 		}
 	}
 

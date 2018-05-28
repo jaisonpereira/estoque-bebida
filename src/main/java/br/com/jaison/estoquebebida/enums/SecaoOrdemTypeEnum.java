@@ -13,10 +13,6 @@ public enum SecaoOrdemTypeEnum {
 		this.value = value;
 	}
 
-	public Integer value() {
-		return this.value;
-	}
-
 	public static boolean isValid(Integer value) {
 		if (value == null) {
 			return false;
@@ -27,6 +23,10 @@ public enum SecaoOrdemTypeEnum {
 			}
 		}
 		return false;
+	}
+
+	public Integer value() {
+		return this.value;
 	}
 
 }

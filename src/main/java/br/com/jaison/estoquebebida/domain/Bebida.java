@@ -34,27 +34,27 @@ public class Bebida {
 	}
 
 	public String getNome() {
-		return nome;
+		return this.nome;
+	}
+
+	public Integer getTipo() {
+		return this.tipo;
+	}
+
+	public Double getVolume() {
+		return this.volume;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public Double getVolume() {
-		return volume;
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
 	}
 
 	public void setVolume(Double volume) {
 		this.volume = volume;
-	}
-
-	public Integer getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
 	}
 
 }

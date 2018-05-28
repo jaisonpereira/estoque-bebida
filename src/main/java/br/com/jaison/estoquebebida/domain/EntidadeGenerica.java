@@ -13,7 +13,7 @@ public class EntidadeGenerica {
 	private String id;
 
 	public String getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(String id) {

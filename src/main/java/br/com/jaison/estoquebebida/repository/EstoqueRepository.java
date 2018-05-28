@@ -8,10 +8,10 @@ import br.com.jaison.estoquebebida.domain.Estoque;
 
 public interface EstoqueRepository extends MongoRepository<Estoque, String>, EstoqueRepositoryCustom {
 
+	public List<Estoque> findByBebidaTipoEquals(Integer tipo);
+
 	public List<Estoque> findByNumeroSecao(Integer numeroSecao);
 
 	public List<Estoque> findByNumeroSecaoAndBebidaTipoIsNotIn(Integer numeroSecao, Integer tipo);
-
-	public List<Estoque> findByBebidaTipoEquals(Integer tipo);
 
 }

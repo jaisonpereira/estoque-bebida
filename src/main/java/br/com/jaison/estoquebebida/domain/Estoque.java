@@ -13,10 +13,7 @@ public class Estoque extends EntidadeGenerica {
 
 	private Bebida bebida;
 
-	public Estoque(Integer numeroSecao, Bebida bebida) {
-		super();
-		this.numeroSecao = numeroSecao;
-		this.bebida = bebida;
+	public Estoque() {
 	}
 
 	public Estoque(Integer numeroSecao) {
@@ -24,23 +21,26 @@ public class Estoque extends EntidadeGenerica {
 		this.numeroSecao = numeroSecao;
 	}
 
-	public Estoque() {
-	}
-
-	public Integer getNumeroSecao() {
-		return numeroSecao;
-	}
-
-	public void setNumeroSecao(Integer numeroSecao) {
+	public Estoque(Integer numeroSecao, Bebida bebida) {
+		super();
 		this.numeroSecao = numeroSecao;
+		this.bebida = bebida;
 	}
 
 	public Bebida getBebida() {
-		return bebida;
+		return this.bebida;
+	}
+
+	public Integer getNumeroSecao() {
+		return this.numeroSecao;
 	}
 
 	public void setBebida(Bebida bebida) {
 		this.bebida = bebida;
+	}
+
+	public void setNumeroSecao(Integer numeroSecao) {
+		this.numeroSecao = numeroSecao;
 	}
 
 }

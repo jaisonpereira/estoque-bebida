@@ -9,9 +9,6 @@ public class NotFoundSecaoException extends NotFoundObjectException {
 		super(error);
 	}
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7601187545430441581L;
 
 }

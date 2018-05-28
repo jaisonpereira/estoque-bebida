@@ -9,9 +9,6 @@ public class NotFoundTypeBebidaException extends NotFoundObjectException {
 		super(message);
 	}
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7064573982271871263L;
 
 }

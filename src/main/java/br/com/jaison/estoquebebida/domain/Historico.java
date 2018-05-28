@@ -31,31 +31,31 @@ public class Historico extends EntidadeGenerica {
 	}
 
 	public LocalDateTime getDataOperacao() {
-		return dataOperacao;
+		return this.dataOperacao;
+	}
+
+	public Estoque getItemEstoque() {
+		return this.itemEstoque;
+	}
+
+	public Integer getOperacaoEstoque() {
+		return this.operacaoEstoque;
+	}
+
+	public String getResponsavel() {
+		return this.responsavel;
 	}
 
 	public void setDataOperacao(LocalDateTime dataOperacao) {
 		this.dataOperacao = dataOperacao;
 	}
 
-	public Integer getOperacaoEstoque() {
-		return operacaoEstoque;
-	}
-
-	public void setOperacaoEstoque(Integer operacaoEstoque) {
-		this.operacaoEstoque = operacaoEstoque;
-	}
-
-	public Estoque getItemEstoque() {
-		return itemEstoque;
-	}
-
 	public void setItemEstoque(Estoque itemEstoque) {
 		this.itemEstoque = itemEstoque;
 	}
 
-	public String getResponsavel() {
-		return responsavel;
+	public void setOperacaoEstoque(Integer operacaoEstoque) {
+		this.operacaoEstoque = operacaoEstoque;
 	}
 
 	public void setResponsavel(String responsavel) {

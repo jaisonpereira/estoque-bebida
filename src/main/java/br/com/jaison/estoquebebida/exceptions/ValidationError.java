@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ValidationError extends StandardError {
-	private static final long serialVersionUID = 1L;
 
 	private List<FieldMessage> errors = new ArrayList<>();
 
@@ -12,11 +11,13 @@ public class ValidationError extends StandardError {
 		super(timestamp, status, error, message, path);
 	}
 
-	public List<FieldMessage> getErrors() {
-		return errors;
-	}
+	private static final long serialVersionUID = 1L;
 
 	public void addError(String fieldName, String messagem) {
-		errors.add(new FieldMessage(fieldName, messagem));
+		this.errors.add(new FieldMessage(fieldName, messagem));
+	}
+
+	public List<FieldMessage> getErrors() {
+		return this.errors;
 	}
 }

@@ -2,7 +2,7 @@ package br.com.jaison.estoquebebida.enums;
 
 /**
  * @author jpereira Enum identifica tipo da bebidas suportadas pelo sistema
- * 
+ *
  */
 public enum TipoBebidaTypes {
 	ALCOOLICA(1), NAO_ALCOOLICA(2);
@@ -11,10 +11,6 @@ public enum TipoBebidaTypes {
 
 	TipoBebidaTypes(Integer value) {
 		this.value = value;
-	}
-
-	public Integer value() {
-		return this.value;
 	}
 
 	public static boolean isValid(Integer value) {
@@ -27,6 +23,10 @@ public enum TipoBebidaTypes {
 			}
 		}
 		return false;
+	}
+
+	public Integer value() {
+		return this.value;
 	}
 
 }
