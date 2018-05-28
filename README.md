@@ -20,7 +20,8 @@ Stack:
 
 # Data Base Technology ####
 - tenho experiência com JPA/Hibernate/SpringData enfim bancos relacionais , porém para esse desafio optei por usar NOSQL - Mongo DB,
-para que esse desafio  agregue no meu investimento em BIG DATA e sistemas distribuidos em Java
+para que esse desafio  agregue no meu investimento em BIG DATA e sistemas distribuidos em Java, e demonstrar a simplicidade de resolver problemas com uma cardinalidade simples
+
 - a base esta hospedada em mlab em um perfil gratuito (Server Location Amazon Web Service)
 
 # Estrategia de Consulta ##
