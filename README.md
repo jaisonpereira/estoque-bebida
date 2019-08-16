@@ -1,33 +1,33 @@
-# Estoque - Bebidas - ######
+# Stock - Drinks - ######
 
 
-### Desafio
+### Challenge
 
-#### A API deve ser responsável por gerenciar:
-* Cadastro e consulta das bebidas armazenadas em cada seção com suas
-respectivas queries.
-* Consulta do volume total no estoque por cada tipo de bebida.
-* Consulta dos locais disponíveis de armazenamento de um determinado volume
-de bebida. (calcular via algoritmo).
-* Consulta das seções disponíveis para venda de determinado tipo de bebida
-(calcular via algoritmo).
-* Cadastro de histórico de entrada e saída de bebidas em caso de venda e
-recebimento.
-* Consulta do histórico de entradas e saídas por tipo de bebida e seção.
+#### The API must be responsible for managing:
+* Registration and consultation of drinks stored in each section with their
+respective queries.
+* Query the total volume in stock for each type of drink.
+* Consultation of available storage locations of a given volume
+Drink (calculate via algorithm).
+* Consult the sections available for sale of a certain type of drink.
+(calculate via algorithm).
+* Record of entry and exit of drinks in case of sale and
+receipt.
+* Consultation of the history of entries and exits by type of drink and section.
 
-#### As seguintes regras devem ser respeitadas no fluxo de cadastro e cálculo:
-* Uma seção não pode ter dois ou mais tipos diferentes de bebidas (como já fora
-dito)
-* Não há entrada ou saída de estoque sem respectivo registro no histórico.
-* Registro deve conter horário, tipo, volume, seção e responsável pela entrada.
-* Uma seção não pode receber bebidas não alcoólicas se recebeu alcoólicas no
-mesmo dia. Ex: Seção 2 começou o dia com 50 litros de bebidas alcoólicas que
-foram consumidas do estoque, só poderá receber não alcoólicas no dia seguinte.
-* O endpoint de consulta de histórico de entrada e saída de estoque, deve retornar
-os resultados ordenados por data e seção, podendo alterar a ordenação via
-parâmetros.
-* Para situações de erro, é necessário que a resposta da requisição seja coerente
-em exibir uma mensagem condizente com o erro.
+#### The following rules must be observed in the registration and calculation flow:
+* A section cannot have two or more different types of drinks (as already
+said)
+* There is no stock entry or exit without respective history entry.
+* Registration must contain time, type, volume, section and input.
+* A section cannot receive non-alcoholic beverages if it received alcohol in the
+same day. Ex: Section 2 started the day with 50 liters of alcoholic beverages that
+were consumed from stock, you can only receive non-alcoholics the next day.
+* Inventory entry and exit history query endpoint, must return
+results sorted by date and section, and you can change the sorting via
+parameters.
+* For error situations, request response must be consistent
+to display a message consistent with the error.
 
 
 
@@ -40,95 +40,94 @@ em exibir uma mensagem condizente com o erro.
 * MongoDB
 * Maven
 
-### Ambiente De Desenv
+### Dev Environment
 
 * Spring Tool Suite -- Eclipse Based
 * Debian 8
 
 
 ### Data Base Technology
-* tenho experiência com JPA/Hibernate/SpringData enfim bancos relacionais , porém para esse desafio optei por usar NOSQL - Mongo DB,
-* para que esse desafio  agregue no meu investimento em BIG DATA e micro serviços  em Java, e demonstrar a simplicidade de resolver problemas com uma cardinalidade simples
+* I have experience with JPA / Hibernate / SpringData finally relational databases, but for this challenge I chose to use NOSQL - Mongo DB,
+* for this challenge to add to my investment in BIG DATA and Java micro services, and demonstrate the simplicity of solving problems with simple cardinality
 
-* A base esta hospedada em mlab em um perfil gratuito (Server Location Amazon Web Service)
+* The base is hosted on mlab in a free profile (Server Location Amazon Web Service)
 
-### Estrategia de Consulta ##
-AgregationFramework (Spring data) utilizado para gerar algumas consultas na base, não optei por utilizar spring query para deixar facil a manuntenção com criteria
+### Query Strategy ##
+AgregationFramework (Spring data) used to generate some queries in the base, I did not choose to use spring query to make it easy to maintain with criteria.
 
+### Considerations Made
 
-### Considerações realizadas
-
-#### Cadastro e consulta das bebidas armazenadas em cada seção com suas respectivas queries
-> R: path parameter define qual seção é consultada:
-ex: /estoque/secoes/1  (1 representa o numero da seção)
-
-
-#### Consulta do volume total no estoque por cada tipo de bebida
->R:Path parameter define o Enum Type do tipo de bebida
-/estoque/{tipoBebida}
+#### Registration and consultation of drinks stored in each section with their respective queries
+> R: path parameter defines which section is queried:
+eg  /estoque/secoes/1  (1 represents section number)
 
 
-#### Consulta dos locais disponíveis de armazenamento de um determinado volume e tipo de bebida. (calcular via algoritmo).
-R:Path parameter define o Enum Type do tipo de bebida retornando as secoes disponives para armazenamento
-Path: /estoque/disponivel/{tipoBebida}/?volume=45
-
-#### Consulta das seções disponíveis para venda de determinado tipo de bebida
-> Path: estoque/disponivel/venda/{tipoBebida}
+#### Query total volume in stock for each drink type
+> R: Path parameter defines the Enum Type of the drink type.
+/estoque/{DrinkType}
 
 
+#### Query the available storage locations for a particular volume and type of beverage. (calculate via algorithm).
+A: Path parameter defines the Enum Type of the beverage type by returning the available storage sections.
+Path: /estoque/disponivel/ {DrunkType} /? Volume = 45
 
-#### Cadastro de histórico de entrada e saída de bebidas em caso de venda e recebimento.
-
->Atributo contendo o codigo de operacao de estoque devera ser enviado indicando a operacao realizada no caso Entrada ou saida Enum:OperacaoEstoqueType 
-/estoque/secoes/{numeroseção}
-Existem testem que garantem o funcionamento dessa operacao
-porém é necessario informar o idDo ItemEstoque para efetuar a saida
+#### Query the sections available for sale for a particular type of drink
+> Path: estoque/disponivel/venda/{DrinksType}
 
 
-#### Consulta do histórico de entradas e saídas por tipo de bebida e seção. O endpoint de consulta de histórico de entrada e saída de estoque, deve retornar os resultados ordenados por data e seção, podendo alterar a ordenação via parâmetros.
-> R: O EndPoint realiza consulta ordenada (ascendente e descendente) que são manipuladas via parametro booleano
+
+#### Registration of drinks entry and exit history in case of sale and receipt.
+
+> Attribute containing the stock operation code must be sent indicating the operation performed in the case Enum In or Out Enum: OperacaoEstoqueType
+/estoque/secoes/{numbering}
+There are tests that guarantee the operation of this operation.
+however, it is necessary to enter the ID of the Stock Item to make the exit.
+
+
+#### Query history of entries and exits by drink type and section. The stock entry and exit history query endpoint must return the results sorted by date and section, and can change the sorting via parameters.
+> A: EndPoint performs ordered queries (ascending and descending) that are handled via boolean parameter
 Path: /historico?desc=true
 
 
 
-#### Comentarios no codigo ####
-> Prezo por clean code.Porem os comentarios no codigo é apenas para facilitar a dinamica do code review do recrutador
+#### Comments on code ####
+> I appreciate clean code. But the comments in the code is just to facilitate the dynamics of the recruiter's code review
 
-#### Testes Unitários - Junit
+#### Unit Tests - Junit
 
-* RestTemplate 
-* utilizando Restfull validamos o "Http status code " para identificar a semantica dos retornos esperados
-* Validação na camada de regra de negócio
+* RestTemplate
+* Using Restfull we validate the "Http status code" to identify the expected return semantics
+* Validation in the business rule layer
 
-#### Requisito-Para situações de erro, é necessário que a resposta da requisição seja coerente em exibir uma mensagem condizente com o erro.
-> R: - Exceptions São tratadas por um @ControllerAdvice dos spring classe - ResourceExceptionHandler
+#### Requirement-For error situations, the request response must be consistent in displaying a message that matches the error.
+> R: - Exceptions are handled by an @ControllerAdvice of the spring class - ResourceExceptionHandler
 
 
-### Testes Junits Implementados
-*  Valida inserção  de operação de estoque com seção inexistente, retorna http status code not found 404(seção não encontrada)
+### Testing Junits Implemented
+* Validates stock transaction insertion with nonexistent section, returns http status code not found 404 (section not found)
 
-* Valida inserção  em numero de seção existente porém sem campos obrigatorios, horário, tipo, volume, seção e responsável pela entrada, erro esperado com http status na faixa  422(Unprocesable entity)
+* Validates insertion into existing section number but no required fields, time, type, volume, section and input, expected error with http status in range 422 (Unprocesable entity)
 
-* Valida Consulta  de seção inexistente na camada de negócio, esperando Exception NotFoundsecaoException
+* Validates No business layer section query, expecting Exception NotFoundsecaoException
 
-* Valida tentativa de inserção de dois tipos de bebidas na mesma seção , esperando a Exception TwoDrinkTypeException
+* Validates attempted insertion of two types of drinks into the same section, waiting for Exception TwoDrinkTypeException
 
-* Valida tentativa de inserção de bebidas que excedem a capacidade de armazenamento da seção alcoolica(Obs volume é calculo por ml)
+* Validates attempted insertion of beverages that exceed the storage capacity of the alcoholic section (Note volume is calculated per ml)
 
-* Valida tentativa de inserção de bebidas que excedem a capacidade de armazenamento da seção nao alcoolica(Obs volume é calculo por ml)
+* Validates attempted insertion of beverages that exceed the storage capacity of the non-alcoholic section (Note volume is calculated per ml)
 
-* Valida se as operacoes de entrada realizadas via WebService sao registradas  historico
+* Validates if incoming operations performed via WebService are logged historical
 
-* Valida inserção  de bebida nao permitida, com http status code not found 404(Tipo de bebida não encontrada)
+* Validates drink insertion not allowed, with http status code not found 404
 
-* Valida Consulta  de Tipo de bebida inexistente na camada de negócio, esperando Exception NotFoundTypeBebidaException
+* Validates Beverage Type Query that does not exist in the business layer, expecting Exception NotFoundTypeDrinkException
 
-* Valida se a quantidade inserida é a quantidade  retornada de volume, independentemente da seção armazenada,foi validado uma inserção de um tipo de bebida diferente nesse teste
+* Validates if the amount entered is the volume returned regardless of the stored section, an insertion of a different drink type into this test has been validated.
 
-* Valida metodo de consulta de seções disponiveis para armazenar um determinado volume de um determinado tipo de bebida
+* Validates available section lookup method for storing a certain volume of a particular beverage type
 
-* Valida consulta de secoes disponiveis para venda a partir de um determinado tipo de bebida
+* Validation of available sections for sale from a certain type of drink.
 
-* Valida tentativa de saida de item inexistente no estoque
+* Validates attempt to exit non-existent item
 
-* Validacao de tentativa de inserção de bebidas alcoolicas e nao alcoolicas no mesmo dia e na mesma secao.
+* Validation of attempted insertion of alcoholic and non-alcoholic beverages on the same day and in the same section.
